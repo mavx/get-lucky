@@ -102,3 +102,6 @@ ENV/
 
 # sqlite
 *.db
+
+# Editor settings
+.vscode
