@@ -36,7 +36,7 @@ def address_search(key_generator_instance, db_connection, batch_size):
             save_address(
                 connection=db_connection, 
                 public_key=address, 
-                private_key=address_dict[address]
+                private_key=address_dict[address],
                 balance=balances[address]
             )
 
