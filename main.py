@@ -16,7 +16,10 @@ def main():
 
     while 1:
         print('\nAttempt #{}'.format(n))
-        address_search(k, conn, batch_size)
+        try:
+            address_search(k, conn, batch_size)
+        except Exception as e:
+            print(e)
         n += 1
 
 
@@ -49,6 +52,10 @@ def get_balances(address_list):
         j = r.json()
         balances = {address: j[address]['final_balance'] for address in j}
         print('Retrieved {} results.'.format(len(balances)))
+        return balances
+    else:
+        print(r)
+        print(r.content)
         return balances
 
 
