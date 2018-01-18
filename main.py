@@ -15,7 +15,7 @@ def main():
     n = 1
 
     while 1:
-        print('\nAttempt #{}'.format(n))
+        print('\nAttempt #{0} (Checked: {1})'.format(n, batch_size * n))
         try:
             address_search(k, conn, batch_size)
         except Exception as e:
