@@ -11,7 +11,7 @@ def main():
     # Initialize address generator
     k = keys.Keys()
     conn = sqlite3.connect('address.db')
-    batch_size = 30
+    batch_size = 60
     n = 1
 
     while 1:
