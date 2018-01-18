@@ -25,11 +25,7 @@ def main():
 
 def address_search(key_generator_instance, db_connection, batch_size):
     print('Generating {} keys in a batch...'.format(batch_size))
-    address_dict = {}
-    for _ in range(batch_size):
-        keypair = key_generator_instance.generate()
-        address_dict[keypair['public_key']] = keypair['private_key']
-
+    address_dict = generate_address_dict(key_generator_instance, batch_size)
     balances = get_balances(address_dict.keys())
 
     print('Checking queried addresses:')
@@ -43,6 +39,14 @@ def address_search(key_generator_instance, db_connection, batch_size):
                 balance=balances[address]
             )
 
+
+def generate_address_dict(key_generator_instance, batch_size):
+    address_dict = {}
+    for _ in range(batch_size):
+        keypair = key_generator_instance.generate()
+        address_dict[keypair['public_key']] = keypair['private_key']
+    
+    return address_dict
 
 def get_balances(address_list):
     print('Querying addresses for balance...')
