@@ -4,9 +4,11 @@ import datetime as dt
 import requests
 
 import keys
+import os
 
 ENDPOINT = 'https://blockchain.info/balance'
-SLACK_WEBHOOK = 'https://hooks.slack.com/services/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'
+SLACK_WEBHOOK = os.getenv('slack_webhook')
+# 'https://hooks.slack.com/services/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'
 
 def main():
     # Initialize address generator
@@ -20,7 +22,7 @@ def main():
         try:
             address_search(k, conn, batch_size)
         except Exception as e:
-            print(e)
+            print('Encountered error: {}'.format(e))
         n += 1
 
 
