@@ -1,8 +1,6 @@
 import sqlite3
 import datetime as dt
-
 import requests
-
 import keys
 import os
 
@@ -10,15 +8,15 @@ ENDPOINT = 'https://blockchain.info/balance'
 SLACK_WEBHOOK = os.getenv('slack_webhook')
 # 'https://hooks.slack.com/services/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'
 
-def main():
+def main(try_count):
     # Initialize address generator
     k = keys.Keys()
     conn = sqlite3.connect('address.db')
     batch_size = 60
-    n = 1
+    n = 0
 
-    while 1:
-        print('\nAttempt #{0} (Checked: {1})'.format(n, batch_size * n))
+    while n < try_count:
+        print('\nAttempt #{0} (Checked: {1})'.format(n+1, batch_size * (n+1)))
         try:
             address_search(k, conn, batch_size)
         except Exception as e:
